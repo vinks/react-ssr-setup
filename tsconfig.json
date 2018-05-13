@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "noEmit": true,
+        "pretty": true,
+        "skipLibCheck": true,
+        "allowJs": true,
+        "jsx": "react",
+        "allowSyntheticDefaultImports": true
+    },
+    "exclude": ["node_modules", "**/node_modules/*"]
+}
