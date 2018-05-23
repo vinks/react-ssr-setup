@@ -1,9 +1,11 @@
 // @flow
 import * as React from 'react';
 import Helmet from 'react-helmet';
+import { withRouter, Link, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { setLocale } from './store/app/actions';
+import AsyncComponent from 'components/AsyncComponent';
 
 import css from './App.css';
 
@@ -45,7 +47,6 @@ class App extends React.PureComponent<PropsT> {
                     <li>Prettier (incl. precommit-hook via lint-staged + husky)</li>
                     <li>HMR (buggy, see Readme)</li>
                 </ul>
-
                 <h2>{t('i18n-example')}</h2>
                 <p>
                     <button value="de-DE" onClick={this.setLanguage}>
@@ -55,6 +56,20 @@ class App extends React.PureComponent<PropsT> {
                         English
                     </button>
                 </p>
+                <Link to="/page-1">Page 1</Link> | <Link to="/page-2">Page 2</Link> |{' '}
+                <p>Different asynchronously loaded routes</p>
+                <Route
+                    path="/page-1"
+                    component={AsyncComponent(() =>
+                        import('./components/Page-1' /* webpackChunkName: "page1" */)
+                    )}
+                />
+                <Route
+                    path="/page-2"
+                    component={AsyncComponent(() =>
+                        import('./components/Page-2' /* webpackChunkName: "page2" */)
+                    )}
+                />
             </div>
         );
     }
@@ -64,4 +79,4 @@ const mapDispatchToProps = {
     setLocale,
 };
 
-export default connect(null, mapDispatchToProps)(translate()(App));
+export default withRouter(connect(null, mapDispatchToProps)(translate()(App)));
