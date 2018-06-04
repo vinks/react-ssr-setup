@@ -1,10 +1,12 @@
 // import React from 'react';
-import express from 'express';
-import cors from 'cors';
-import path from 'path';
-import chalk from 'chalk';
-import manifestHelpers from 'express-manifest-helpers';
 import bodyParser from 'body-parser';
+import chalk from 'chalk';
+import cors from 'cors';
+import express from 'express';
+import fs from 'fs';
+import https from 'https';
+import manifestHelpers from 'express-manifest-helpers';
+import path from 'path';
 import { configureStore } from '../shared/store';
 import serverRender from './render';
 import paths from '../../config/paths';
@@ -64,6 +66,27 @@ app.use((err, req, res, next) => {
                 ),
     });
 });
+
+if (process.env.NODE_ENV === 'development' && process.env.SSL) {
+    console.log('USING SSL');
+    const privateKey = fs.readFileSync(`./config/.ssl/key.pem`, 'utf8');
+    const certificate = fs.readFileSync(`./config/.ssl/cert.pem`, 'utf8');
+
+    const httpsServer = https.createServer(
+        {
+            key: privateKey,
+            cert: certificate,
+        },
+        app
+    );
+
+    httpsServer.listen(process.env.SSLPORT || 8543, () => {
+        console.log(
+            `[${new Date().toISOString()}]`,
+            chalk.blue(`App is running: 🌎 https://localhost:${process.env.SSLPORT || 8543}`)
+        );
+    });
+}
 
 app.listen(process.env.PORT || 8500, () => {
     console.log(

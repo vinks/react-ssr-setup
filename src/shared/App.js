@@ -1,6 +1,8 @@
 // @flow
 import * as React from 'react';
 import Helmet from 'react-helmet';
+import { hot } from 'react-hot-loader';
+
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { setLocale } from './store/app/actions';
@@ -13,6 +15,10 @@ type PropsT = {
 };
 
 class App extends React.PureComponent<PropsT> {
+    state = {
+        counter: 0,
+    };
+
     setLanguage = (e) => {
         this.props.setLocale(e.target.value);
     };
@@ -64,4 +70,4 @@ const mapDispatchToProps = {
     setLocale,
 };
 
-export default connect(null, mapDispatchToProps)(translate()(App));
+export default connect(null, mapDispatchToProps)(translate()(hot(module)(App)));
