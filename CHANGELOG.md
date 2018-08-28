@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.1 (2018-08-28)
+
+-   Updated all other dependencies to their most recent versions.
+
 ## 1.6.0 (2018-08-28)
 
 -   Updated Babel to v 7.0.0 final 🎉
