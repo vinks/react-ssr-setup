@@ -1,5 +1,7 @@
 # ⚛ React + Express – SSR Setup
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/manuelbieh/react-ssr-setup.svg)](https://greenkeeper.io/)
+
 ## TOC
 
 -   [Motivation](#motivation)
