@@ -1,5 +1,34 @@
 # Changelog
 
+## 2.5.1 (2019-02-06)
+
+-   Added a stylelint warning for css shorthand properties which override no-shorthand properties
+-   Re-added ejs to `file-loader` exclusion list because it otherwise breaks HTMLWebpackPlugin
+-   Added `HOST` and `DEVSERVER_HOST` to use a different host than `http://localhost`
+
+## 2.5.0 (2019-02-06)
+
+-   Upgraded to React and ReactDOM 16.8.0 (with official Hooks support)
+
+## 2.4.0 (2019-02-05)
+
+-   Upgraded to immer 2.0.0
+-   Increased minimum required version for Node (now: >=8.11.3) and Yarn (now: 1.12.3) since earlier versions _might_ cause problems under certain circumstances
+-   Added `concurrently` for script concurrency and `yarn-or-npm`
+-   Added `stylelint` and a (yet) minimalistic stylelint config
+
+## 2.3.0 (2019-02-01)
+
+-   Temporarily(?) dropped express-manifest-helpers dependency due to [unresolved security issue](https://github.com/danethurber/express-manifest-helpers/pull/4)
+-   Changed case of translations from kebab-case to snake_case (en-US ➡ en_US)
+-   Added [`immer`](https://github.com/mweststrate/immer) as dependency
+-   Updated Jest to Jest 24 and dropped babel-core@7.0.0-bridge.0 as it is no longer needed in Jest 24
+
+## 2.2.0 (2019-01-23)
+
+-   Added @babel/plugin-proposal-optional-chaining
+-   Switched to using a [project-wide Babel config](https://babeljs.io/docs/en/config-files#project-wide-configuration)
+
 ## 2.1.0 (2018-12-17)
 
 -   Replaced deprecated `react-router-redux` with `connected-react-router`

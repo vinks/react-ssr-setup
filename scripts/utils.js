@@ -21,7 +21,10 @@ const compilerPromise = (name, compiler) => {
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+const clientOnly = () => process.argv.includes('--client-only');
+
 module.exports = {
+    clientOnly,
     compilerPromise,
     logMessage,
     sleep,
